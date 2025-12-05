@@ -1,4 +1,15 @@
 <x-guest-layout>
+    <div class="mb-4 flex justify-center items-center space-x-8">
+        <a href="/">
+            <img src="{{ asset('images/logo.png') }}" alt="Logo Perusahaan" class="w-20 h-20 object-contain">
+        </a>
+    </div>
+    <h2 class="text-xl font-semibold text-gray-800 text-center mb-6">
+        Selamat Datang di Sistem Magang PKL </br>
+        RS PKU Aisyiyah Boyolali
+    </h2>
+
+<hr class="mb-4">
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
