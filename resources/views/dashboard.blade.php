@@ -1,309 +1,159 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    <div x-data="{ isProfileInfoModal: false }">
-                        <div class="p-5 mb-6 border border-gray-200 rounded-2xl dark:border-gray-800 lg:p-6">
-                            <div class="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
-                                <div>
-                                    <h4 class="text-lg font-semibold text-gray-800 dark:text-white/90 lg:mb-6">
-                                        Personal Information
-                                    </h4>
 
-                                    <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-7 2xl:gap-x-32">
-                                        <div>
-                                            <p class="mb-2 text-xs text-gray-500 dark:text-gray-400">First Name</p>
-                                            <p class="text-sm font-medium text-gray-800 dark:text-white/90">Musharof</p>
-                                        </div>
-
-                                        <div>
-                                            <p class="mb-2 text-xs text-gray-500 dark:text-gray-400">Last Name</p>
-                                            <p class="text-sm font-medium text-gray-800 dark:text-white/90">Chowdhury</p>
-                                        </div>
-
-                                        <div>
-                                            <p class="mb-2 text-xs text-gray-500 dark:text-gray-400">Email address</p>
-                                            <p class="text-sm font-medium text-gray-800 dark:text-white/90">randomuser@pimjo.com</p>
-                                        </div>
-
-                                        <div>
-                                            <p class="mb-2 text-xs text-gray-500 dark:text-gray-400">Phone</p>
-                                            <p class="text-sm font-medium text-gray-800 dark:text-white/90">+09 363 398 46</p>
-                                        </div>
-
-                                        <div>
-                                            <p class="mb-2 text-xs text-gray-500 dark:text-gray-400">Bio</p>
-                                            <p class="text-sm font-medium text-gray-800 dark:text-white/90">Team Manager</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <button class="edit-button" @click="isProfileInfoModal = true">
-                                    <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18">
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M15.0911 2.78206C14.2125 1.90338 12.7878 1.90338 11.9092 2.78206L4.57524 10.116C4.26682 10.4244 4.0547 10.8158 3.96468 11.2426L3.31231 14.3352C3.25997 14.5833 3.33653 14.841 3.51583 15.0203C3.69512 15.1996 3.95286 15.2761 4.20096 15.2238L7.29355 14.5714C7.72031 14.4814 8.11172 14.2693 8.42013 13.9609L15.7541 6.62695C16.6327 5.74827 16.6327 4.32365 15.7541 3.44497L15.0911 2.78206Z" />
-                                    </svg>
-                                    Edit
-                                </button>
-                            </div>
-                        </div>
-
-                        {{-- Modal --}}
-                        <div x-show="isProfileInfoModal"
-                            class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4 backdrop-blur-sm"
-                            x-transition>
-                            <div class="relative w-full max-w-[700px] rounded-3xl bg-white p-4 dark:bg-gray-900 lg:p-11"
-                                @click.away="isProfileInfoModal = false">
-
-                                {{-- Close button --}}
-                                <button @click="isProfileInfoModal = false"
-                                    class="absolute right-5 top-5 flex h-11 w-11 items-center justify-center rounded-full bg-gray-100 text-gray-400 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300">
-                                    ✕
-                                </button>
-
-                                <div class="px-2 pr-14">
-                                    <h4 class="mb-2 text-2xl font-semibold text-gray-800 dark:text-white/90">
-                                        Edit Personal Information
-                                    </h4>
-                                    <p class="mb-6 text-sm text-gray-500 dark:text-gray-400">
-                                        Update your details to keep your profile up-to-date.
-                                    </p>
-                                </div>
-
-                                <form class="flex flex-col">
-                                    <div class="h-[458px] overflow-y-auto p-2">
-                                        {{-- Form fields --}}
-
-                                        <h5 class="mb-5 text-lg font-medium text-gray-800 dark:text-white/90">
-                                            Social Links
-                                        </h5>
-
-                                        <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
-                                            <div>
-                                                <label class="text-sm font-medium text-gray-700 dark:text-gray-400">Facebook</label>
-                                                <input type="text" value="https://www.facebook.com/PimjoHQ"
-                                                    class="input-theme" />
-                                            </div>
-
-                                            <div>
-                                                <label class="text-sm font-medium text-gray-700 dark:text-gray-400">X.com</label>
-                                                <input type="text" value="https://x.com/PimjoHQ"
-                                                    class="input-theme" />
-                                            </div>
-
-                                            <div>
-                                                <label class="text-sm font-medium text-gray-700 dark:text-gray-400">LinkedIn</label>
-                                                <input type="text" value="https://www.linkedin.com/company/pimjo/"
-                                                    class="input-theme" />
-                                            </div>
-
-                                            <div>
-                                                <label class="text-sm font-medium text-gray-700 dark:text-gray-400">Instagram</label>
-                                                <input type="text" value="https://instagram.com/PimjoHQ"
-                                                    class="input-theme" />
-                                            </div>
-                                        </div>
-
-                                        <div class="mt-7">
-                                            <h5 class="mb-5 text-lg font-medium text-gray-800 dark:text-white/90">
-                                                Personal Information
-                                            </h5>
-
-                                            <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
-                                                <div>
-                                                    <label class="text-sm font-medium text-gray-700 dark:text-gray-400">First Name</label>
-                                                    <input type="text" value="Musharof" class="input-theme" />
-                                                </div>
-
-                                                <div>
-                                                    <label class="text-sm font-medium text-gray-700 dark:text-gray-400">Last Name</label>
-                                                    <input type="text" value="Chowdhury" class="input-theme" />
-                                                </div>
-
-                                                <div>
-                                                    <label class="text-sm font-medium text-gray-700 dark:text-gray-400">Email</label>
-                                                    <input type="text" value="emirhanboruch55@gmail.com" class="input-theme" />
-                                                </div>
-
-                                                <div>
-                                                    <label class="text-sm font-medium text-gray-700 dark:text-gray-400">Phone</label>
-                                                    <input type="text" value="+09 363 398 46" class="input-theme" />
-                                                </div>
-
-                                                <div class="col-span-2">
-                                                    <label class="text-sm font-medium text-gray-700 dark:text-gray-400">Bio</label>
-                                                    <input type="text" value="Team Manager" class="input-theme" />
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="flex items-center gap-3 mt-6 lg:justify-end">
-                                        <button type="button" @click="isProfileInfoModal = false"
-                                            class="btn-secondary">Close</button>
-
-                                        <button type="button"
-                                            @click="alert('Profile saved!'); isProfileInfoModal = false"
-                                            class="btn-primary">
-                                            Save Changes
-                                        </button>
-                                    </div>
-
-                                </form>
-                            </div>
-                        </div>
-                        <div class="p-5 border border-gray-200 rounded-2xl dark:border-gray-800 lg:p-6">
-                            <div class="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
-                                <div>
-                                    <h4 class="text-lg font-semibold text-gray-800 dark:text-white/90 lg:mb-6">Address
-                                    </h4>
-
-                                    <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-7 2xl:gap-x-32">
-                                        <div>
-                                            <p class="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">
-                                                Country</p>
-                                            <p class="text-sm font-medium text-gray-800 dark:text-white/90">United
-                                                States</p>
-                                        </div>
-
-                                        <div>
-                                            <p class="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">
-                                                City/State</p>
-                                            <p class="text-sm font-medium text-gray-800 dark:text-white/90">Phoenix,
-                                                United States</p>
-                                        </div>
-
-                                        <div>
-                                            <p class="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">
-                                                Postal Code</p>
-                                            <p class="text-sm font-medium text-gray-800 dark:text-white/90">ERT 2489</p>
-                                        </div>
-
-                                        <div>
-                                            <p class="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">TAX
-                                                ID</p>
-                                            <p class="text-sm font-medium text-gray-800 dark:text-white/90">AS4568384
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <button onclick="openAddressModal()"
-                                    class="flex w-full items-center justify-center gap-2 rounded-full border border-gray-300 bg-white px-4 py-3 text-sm font-medium text-gray-700 shadow-theme-xs hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 lg:inline-flex lg:w-auto">
-                                    <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18">
-                                        <path d="M15.0911 2.78206C14.2125 1.90338 12.7878..." />
-                                    </svg>
-                                    Edit
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- MODAL -->
-                        <div id="addressModal" style="display:none;">
-                            <div
-                                class="no-scrollbar relative w-full max-w-[700px] overflow-y-auto rounded-3xl bg-white p-4 dark:bg-gray-900 lg:p-11">
-                                <button onclick="closeAddressModal()"
-                                    class="absolute right-5 top-5 h-11 w-11 flex items-center justify-center rounded-full bg-gray-100 text-gray-400 hover:bg-gray-200 dark:bg-gray-700">
-                                    ✕
-                                </button>
-
-                                <div class="px-2 pr-14">
-                                    <h4 class="mb-2 text-2xl font-semibold text-gray-800 dark:text-white/90">Edit
-                                        Address</h4>
-                                    <p class="mb-6 text-sm text-gray-500 dark:text-gray-400">Update your details to keep
-                                        your profile up-to-date.</p>
-                                </div>
-
-                                <form class="flex flex-col">
-                                    <div class="px-2 overflow-y-auto custom-scrollbar">
-                                        <div class="grid grid-cols-1 gap-x-6 gap-y-5 lg:grid-cols-2">
-
-                                            <div>
-                                                <label
-                                                    class="mb-1.5 block text-sm font-medium text-gray-700">Country</label>
-                                                <input type="text" value="United States"
-                                                    class="h-11 w-full rounded-lg border border-gray-300 px-4" />
-                                            </div>
-
-                                            <div>
-                                                <label
-                                                    class="mb-1.5 block text-sm font-medium text-gray-700">City/State</label>
-                                                <input type="text" value="Phoenix, Arizona, United States"
-                                                    class="h-11 w-full rounded-lg border border-gray-300 px-4" />
-                                            </div>
-
-                                            <div>
-                                                <label class="mb-1.5 block text-sm font-medium text-gray-700">Postal
-                                                    Code</label>
-                                                <input type="text" value="ERT 2489"
-                                                    class="h-11 w-full rounded-lg border border-gray-300 px-4" />
-                                            </div>
-
-                                            <div>
-                                                <label class="mb-1.5 block text-sm font-medium text-gray-700">TAX
-                                                    ID</label>
-                                                <input type="text" value="AS4568384"
-                                                    class="h-11 w-full rounded-lg border border-gray-300 px-4" />
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="flex items-center gap-3 mt-6 lg:justify-end">
-                                        <button type="button" onclick="closeAddressModal()"
-                                            class="rounded-lg border px-4 py-2.5">
-                                            Close
-                                        </button>
-
-                                        <button type="button" onclick="saveProfile()"
-                                            class="rounded-lg bg-blue-600 px-4 py-2.5 text-white">
-                                            Save Changes
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+            {{-- ================= TAMPILAN ADMIN ================= --}}
+            @if(Auth::user()->role === 'admin')
+                
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+                    <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 border-l-4 border-blue-500">
+                        <div class="text-gray-500 dark:text-gray-400 text-sm">Total Pelamar</div>
+                        <div class="text-3xl font-bold text-gray-800 dark:text-gray-100">{{ $data['total_pelamar'] }}</div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 border-l-4 border-yellow-500">
+                        <div class="text-gray-500 dark:text-gray-400 text-sm">Menunggu Review</div>
+                        <div class="text-3xl font-bold text-yellow-600 dark:text-yellow-400">{{ $data['pending'] }}</div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 border-l-4 border-green-500">
+                        <div class="text-gray-500 dark:text-gray-400 text-sm">Diterima</div>
+                        <div class="text-3xl font-bold text-green-600 dark:text-green-400">{{ $data['diterima'] }}</div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 border-l-4 border-red-500">
+                        <div class="text-gray-500 dark:text-gray-400 text-sm">Ditolak</div>
+                        <div class="text-3xl font-bold text-red-600 dark:text-red-400">{{ $data['ditolak'] }}</div>
                     </div>
                 </div>
-            </div>
+
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
+                    <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">5 Pendaftar Terbaru</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                            <thead>
+                                <tr>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Nama</th>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Kampus</th>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Jurusan</th>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Tanggal Daftar</th>
+                                    <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                                @forelse($data['terbaru'] as $item)
+                                <tr>
+                                    <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">{{ $item->nama_lengkap }}</td>
+                                    <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ $item->institusi }}</td>
+                                    <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ $item->jurusan }}</td>
+                                    <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ $item->created_at->format('d M Y') }}</td>
+                                    <td class="px-4 py-3 whitespace-nowrap text-sm">
+                                        @if($item->status == 'pending')
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Pending</span>
+                                        @elseif($item->status == 'accepted')
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Diterima</span>
+                                        @else
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Ditolak</span>
+                                        @endif
+                                    </td>
+                                </tr>
+                                @empty
+                                <tr>
+                                    <td colspan="5" class="px-4 py-3 text-center text-sm text-gray-500 dark:text-gray-400">Belum ada pendaftar.</td>
+                                </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            {{-- ================= TAMPILAN PEMAGANG ================= --}}
+            @else
+                
+                {{-- KONDISI 1: BELUM ISI BIODATA --}}
+                @if(!$profile)
+                    <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 text-center">
+                        <h3 class="text-xl font-bold text-gray-800 dark:text-gray-200 mb-2">Halo, {{ Auth::user()->name }}!</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-6">Anda belum melengkapi biodata magang. Silakan lengkapi untuk melanjutkan proses pendaftaran.</p>
+                        
+                        <a href="{{ route('biodata.create') }}" class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg shadow-lg transform transition hover:scale-105">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                            Isi Biodata Sekarang
+                        </a>
+                    </div>
+                
+                {{-- KONDISI 2: SUDAH ISI (TAMPILKAN STATUS) --}}
+                @else
+                    <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6 mb-6">
+                        <h3 class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">Status Lamaran Anda</h3>
+                        
+                        {{-- STATUS PENDING --}}
+                        @if($profile->status == 'pending')
+                            <div class="bg-yellow-50 dark:bg-yellow-900/30 border-l-4 border-yellow-400 p-4">
+                                <div class="flex">
+                                    <div class="flex-shrink-0">
+                                        <svg class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-sm text-yellow-700 dark:text-yellow-200">
+                                            Biodata Anda berhasil dikirim dan sedang <strong>menunggu review</strong> oleh Admin/HRD. Mohon cek berkala.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        {{-- STATUS DITERIMA --}}
+                        @elseif($profile->status == 'accepted')
+                            <div class="bg-green-50 dark:bg-green-900/30 border-l-4 border-green-400 p-4">
+                                <div class="flex">
+                                    <div class="flex-shrink-0">
+                                        <svg class="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                    <div class="ml-3">
+                                        <h3 class="text-sm font-medium text-green-800 dark:text-green-200">Selamat! Lamaran Diterima</h3>
+                                        <div class="mt-2 text-sm text-green-700 dark:text-green-300">
+                                            <p>Anda telah diterima untuk magang. Silakan hubungi admin atau datang ke kantor pada tanggal {{ \Carbon\Carbon::parse($profile->tanggal_mulai)->format('d F Y') }}.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        {{-- STATUS DITOLAK --}}
+                        @elseif($profile->status == 'rejected')
+                            <div class="bg-red-50 dark:bg-red-900/30 border-l-4 border-red-400 p-4">
+                                <div class="flex">
+                                    <div class="flex-shrink-0">
+                                        <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-sm text-red-700 dark:text-red-200">
+                                            Mohon maaf, lamaran magang Anda belum dapat kami terima saat ini.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
+                        <div class="mt-6">
+                            <a href="{{ route('biodata.show') }}" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-900 font-medium">
+                                &rarr; Lihat Detail Biodata Saya
+                            </a>
+                        </div>
+                    </div>
+                @endif
+
+            @endif
+
         </div>
     </div>
 </x-app-layout>
-
-<style>
-    .input-theme {
-        @apply h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs 
-        dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-gray-400;
-    }
-
-    .btn-primary {
-        @apply flex w-full justify-center rounded-lg bg-brand-500 px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-600 sm:w-auto;
-    }
-
-    .btn-secondary {
-        @apply flex w-full justify-center rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 
-        dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 sm:w-auto;
-    }
-</style>
-<script>
-    function openAddressModal() {
-        document.getElementById("addressModal").style.display = "block";
-    }
-
-    function closeAddressModal() {
-        document.getElementById("addressModal").style.display = "none";
-    }
-
-    function saveProfile() {
-        console.log("Profile saved");
-        closeAddressModal();
-    }
-</script>
