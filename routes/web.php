@@ -1,11 +1,12 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\InternController;
-use App\Http\Controllers\AdminController; // <--- PENTING: Controller Admin
+use App\Http\Controllers\AdminController;
 use App\Models\InternProfile;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;      // <--- PENTING: Untuk Auth::user()
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('welcome');
@@ -16,7 +17,6 @@ Route::get('/dashboard', function () {
     $user = Auth::user();
 
     if ($user->role === 'admin') {
-        // DATA UNTUK ADMIN
         $data = [
             'total_pelamar' => InternProfile::count(),
             'pending' => InternProfile::where('status', 'pending')->count(),
@@ -26,7 +26,6 @@ Route::get('/dashboard', function () {
         ];
         return view('dashboard', compact('data'));
     } else {
-        // DATA UNTUK PEMAGANG
         $profile = $user->internProfile;
         return view('dashboard', compact('profile'));
     }
@@ -35,30 +34,27 @@ Route::get('/dashboard', function () {
 
 // --- GROUP KHUSUS ADMIN (Hanya bisa diakses Admin) ---
 Route::middleware(['auth', 'role:admin'])->group(function () {
-
-    // List semua pelamar
     Route::get('/admin/applicants', [AdminController::class, 'index'])->name('admin.applicants.index');
-
-    // Detail pelamar & Aksi Review
-    Route::get('/admin/applicants/{id}', [AdminController::class, 'show'])->name('admin.applicants.show');
-
-    // Simpan Keputusan (Terima/Tolak)
-    Route::patch('/admin/applicants/{id}/status', [AdminController::class, 'updateStatus'])->name('admin.applicants.update_status');
     Route::get('/admin/applicants/export', [AdminController::class, 'exportExcel'])->name('admin.applicants.export');
+    Route::get('/admin/applicants/{id}', [AdminController::class, 'show'])->name('admin.applicants.show');
+    Route::delete('/admin/applicants/{id}', [AdminController::class, 'destroy'])->name('admin.applicants.destroy');
+    Route::patch('/admin/applicants/{id}/status', [AdminController::class, 'updateStatus'])->name('admin.applicants.update_status');
+
+    // MANAJEMEN ADMIN
+    Route::get('/admin/list', [AdminUserController::class, 'index'])->name('admin.users.index'); // <-- BARU
+    Route::get('/admin/create-new', [AdminUserController::class, 'create'])->name('admin.users.create');
+    Route::post('/admin/create-new', [AdminUserController::class, 'store'])->name('admin.users.store');
+    Route::delete('/admin/users/{id}', [AdminUserController::class, 'destroy'])->name('admin.users.destroy');
 });
 
 
 // --- GROUP USER LOGIN (Bisa Admin & User Biasa) ---
 Route::middleware('auth')->group(function () {
-
-    // Biodata Magang
     Route::get('/biodata', [InternController::class, 'show'])->name('biodata.show');
     Route::get('/biodata/isi', [InternController::class, 'create'])->name('biodata.create');
     Route::post('/biodata/simpan', [InternController::class, 'store'])->name('biodata.store');
     Route::get('/biodata/edit', [InternController::class, 'edit'])->name('biodata.edit');
     Route::patch('/biodata/update', [InternController::class, 'update'])->name('biodata.update');
-
-    // Profile Bawaan Breeze (Ganti Password, Hapus Akun)
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

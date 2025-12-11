@@ -62,6 +62,13 @@
                     </x-slot>
 
                     <x-slot name="content">
+                        @if(Auth::user()->role === 'admin')
+                            <x-dropdown-link :href="route('admin.users.index')">
+                                {{ __('Daftar Admin') }}
+                            </x-dropdown-link>
+                            <div class="border-t border-gray-100 dark:border-gray-600"></div>
+                        @endif
+                        
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
