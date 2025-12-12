@@ -20,7 +20,6 @@
                     memberikan keputusan.</p>
 
                 <div class="flex flex-wrap gap-4">
-                    {{-- Form Terima --}}
                     <form action="{{ route('admin.applicants.update_status', $profile->id) }}" method="POST">
                         @csrf
                         @method('PATCH')
@@ -35,7 +34,6 @@
                         </button>
                     </form>
 
-                    {{-- Form Tolak --}}
                     <form action="{{ route('admin.applicants.update_status', $profile->id) }}" method="POST">
                         @csrf
                         @method('PATCH')
@@ -50,7 +48,6 @@
                         </button>
                     </form>
 
-                    {{-- Form Reset (Jika ingin membatalkan keputusan) --}}
                     <form action="{{ route('admin.applicants.update_status', $profile->id) }}" method="POST">
                         @csrf
                         @method('PATCH')
@@ -74,13 +71,11 @@
 
                 <div class="border-t border-gray-200 dark:border-gray-700">
                     <dl>
-                        {{-- ================= DATA PRIBADI ================= --}}
                         <div
                             class="px-4 py-2 bg-gray-100 dark:bg-gray-900 font-bold text-gray-700 dark:text-gray-300 border-b dark:border-gray-700">
                             I. Data Pribadi
                         </div>
 
-                        {{-- Pas Foto --}}
                         <div class="bg-white dark:bg-gray-800 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">Pas Foto</dt>
                             <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100 sm:mt-0 sm:col-span-2">
@@ -95,42 +90,35 @@
                             </dd>
                         </div>
 
-                        {{-- Nama Lengkap --}}
                         <div class="bg-gray-50 dark:bg-gray-700 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">Nama Lengkap</dt>
                             <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100 sm:mt-0 sm:col-span-2">
                                 {{ $profile->nama_lengkap }}</dd>
                         </div>
 
-                        {{-- NIK --}}
                         <div class="bg-white dark:bg-gray-800 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">NIK (KTP)</dt>
                             <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100 sm:mt-0 sm:col-span-2">
                                 {{ $profile->nik }}</dd>
                         </div>
 
-                        {{-- No HP --}}
                         <div class="bg-gray-50 dark:bg-gray-700 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">Nomor HP / WA</dt>
                             <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100 sm:mt-0 sm:col-span-2">
                                 {{ $profile->nomor_hp }}</dd>
                         </div>
 
-                        {{-- Alamat --}}
                         <div class="bg-white dark:bg-gray-800 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">Alamat Domisili</dt>
                             <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100 sm:mt-0 sm:col-span-2">
                                 {{ $profile->alamat }}</dd>
                         </div>
 
-
-                        {{-- ================= DATA AKADEMIK ================= --}}
                         <div
                             class="px-4 py-2 bg-gray-100 dark:bg-gray-900 font-bold text-gray-700 dark:text-gray-300 border-y dark:border-gray-700 mt-4">
                             II. Data Akademik
                         </div>
 
-                        {{-- Institusi --}}
                         <div class="bg-white dark:bg-gray-800 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">Institusi (Kampus/Sekolah)
                             </dt>
@@ -138,14 +126,12 @@
                                 {{ $profile->institusi }}</dd>
                         </div>
 
-                        {{-- NIM & Jurusan --}}
                         <div class="bg-gray-50 dark:bg-gray-700 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">NIM - Jurusan</dt>
                             <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100 sm:mt-0 sm:col-span-2">
                                 {{ $profile->nim }} - {{ $profile->jurusan }}</dd>
                         </div>
 
-                        {{-- Semester & Stase --}}
                         <div class="bg-white dark:bg-gray-800 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">Semester & Bagian</dt>
                             <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100 sm:mt-0 sm:col-span-2">
@@ -154,14 +140,12 @@
                             </dd>
                         </div>
 
-                        {{-- Pembimbing Akademik --}}
                         <div class="bg-gray-50 dark:bg-gray-700 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">Pembimbing Akademik</dt>
                             <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100 sm:mt-0 sm:col-span-2">
                                 {{ $profile->pembimbing_akademik }}</dd>
                         </div>
 
-                        {{-- Periode Magang --}}
                         <div class="bg-white dark:bg-gray-800 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">Rencana Periode Magang</dt>
                             <dd
@@ -172,8 +156,6 @@
                             </dd>
                         </div>
 
-
-                        {{-- ================= DOKUMEN ================= --}}
                         <div
                             class="px-4 py-2 bg-gray-100 dark:bg-gray-900 font-bold text-gray-700 dark:text-gray-300 border-y dark:border-gray-700 mt-4">
                             III. Dokumen Kelengkapan
@@ -185,7 +167,6 @@
                                 <ul
                                     class="border border-gray-200 dark:border-gray-600 rounded-md divide-y divide-gray-200 dark:divide-gray-600">
 
-                                    {{-- List Semua Dokumen --}}
                                     @if ($profile->doc_surat_lamaran_path)
                                         <x-document-list-item title="Surat Lamaran" :path="$profile->doc_surat_lamaran_path" />
                                     @endif

@@ -23,7 +23,6 @@ class AdminController extends Controller
 
         if ($request->has('search') && $request->search != '') {
             $search = $request->search;
-
             $query->where(function ($q) use ($search) {
                 $q->where('nama_lengkap', 'LIKE', '%' . $search . '%')
                     ->orWhere('institusi', 'LIKE', '%' . $search . '%')
@@ -33,12 +32,26 @@ class AdminController extends Controller
             });
         }
 
-        $applicants = $query->orderBy($sort, $direction)->get();
-        if ($request->ajax()) {
-            return view('admin.applicants._table_body', compact('applicants'))->render();
+        if ($request->has('status') && in_array($request->status, ['pending', 'accepted', 'rejected'])) {
+            $query->where('status', $request->status);
         }
 
-        return view('admin.applicants.index', compact('applicants'));
+        $counts = [
+            'all' => InternProfile::count(),
+            'pending' => InternProfile::where('status', 'pending')->count(),
+            'accepted' => InternProfile::where('status', 'accepted')->count(),
+            'rejected' => InternProfile::where('status', 'rejected')->count(),
+        ];
+
+        $applicants = $query->orderBy($sort, $direction)
+            ->paginate(10)
+            ->appends($request->query());
+
+        if ($request->ajax()) {
+            return view('admin.applicants._list', compact('applicants', 'counts'))->render();
+        }
+
+        return view('admin.applicants.index', compact('applicants', 'counts'));
     }
 
     public function show($id)
